@@ -37,7 +37,9 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.cache/rssmw
-          key: rssmw-${{ hashFiles('feeds.conf') }}
+          # v2: mock run (pre-secrets) polluted the cache with [MOCK] titles;
+          # bump the suffix to discard cache generations written by mock builds.
+          key: rssmw-v2-${{ hashFiles('feeds.conf') }}
 
       - name: Build feeds
         run: |
