@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""rssmw/summarize-description: replaces item descriptions with AI summaries.
+"""rssmw/summarize-description: replaces item descriptions with AI summaries
+and prepends the summary to content:encoded.
 
 Reads full RSS XML on stdin, writes full RSS XML on stdout. Per item, the
 <body content> (content:encoded preferred, falling back to whatever exists)
-is summarized and the item's <description> text is REPLACED with the summary.
-content:encoded and all other elements (title, links, extensions, ...) are
-left untouched. Items without a description element are skipped entirely.
+is summarized. The item's <description> text is REPLACED with the summary;
+when content:encoded exists, the summary is PREPENDED to it (wrapped in a
+<blockquote>, original content preserved below), because most readers show
+content:encoded and ignore <description>. Items without a description
+element are skipped entirely.
 
 Env:
   OPENAI_BASE_URL   base URL of an OpenAI-compatible API (no default)
@@ -54,8 +57,13 @@ def main() -> int:
 
     def apply(body: str, summary: str) -> None:
         for item, b in pairs:
-            if b == body:
-                item.find("description").text = summary
+            if b != body:
+                continue
+            item.find("description").text = summary
+            ce = item.find("{%s}encoded" % lib.CONTENT_NS)
+            if ce is not None and (ce.text or "").strip():
+                ce.text = "<blockquote>%s</blockquote>\n%s" % (
+                    summary, ce.text)
 
     lib.run_pipeline([b for _, b in pairs], NAME, "summary",
                      lambda s: lib.chat_complete(
