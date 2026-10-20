@@ -144,46 +144,20 @@ The 2-hour interval keeps the free-tier actions budget comfortable
 (~370 min/month at ~1 min/run vs. the 2000 min/month cap); a 30-min cron
 would exceed it.
 
-### 1. Build on a schedule (cron)
+### 1. Publish to your own host (rsync)
 
-`crontab -e`:
-
-```
-*/30 * * * * cd /path/to/feed-pipe && scripts/build_feeds.sh >> build.log 2>&1 && scripts/publish_github.sh >> build.log 2>&1
-```
-
-(Use `scripts/publish_rsync.sh` instead of `scripts/publish_github.sh` for
-the rsync target.) The per-item sha256 caches in the middleware mean
-unchanged items cost nothing — a rebuild where nothing changed is
-effectively free.
-
-### 2. Publish options
-
-**GitHub Pages / Gitea (static host):**
-
-1. Create an empty repo (e.g. `yourname/feeds`), enable Pages on it,
-   clone it locally.
-2. Point the script at it and run:
-
-```sh
-export FEEDS_REPO=/path/to/feeds-repo
-scripts/publish_github.sh
-```
-
-`publish_github.sh` rsyncs `out/*.xml` into `feeds/`, and commits+pushes
-only when content actually changed (`git diff --cached --quiet`), so cron
-runs leave no empty commits.
-
-**rsync to your own host (nginx etc.):**
+`build_feeds.sh` locally (e.g. from cron), then:
 
 ```sh
 export RSYNC_TARGET=user@host:/var/www/feeds/
 scripts/publish_rsync.sh
 ```
 
-(No-op if `RSYNC_TARGET` is unset.)
+(No-op if `RSYNC_TARGET` is unset.) The per-item sha256 caches in the
+middleware mean unchanged items cost nothing — a rebuild where nothing
+changed is effectively free.
 
-### 3. Subscribe from the reader
+### 2. Subscribe from the reader
 
 Add the static URL as a feed, e.g.:
 
