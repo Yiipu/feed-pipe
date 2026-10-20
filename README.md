@@ -161,10 +161,8 @@ changed is effectively free.
 
 Add the static URL as a feed, e.g.:
 
-- `https://yourname.github.io/feeds/feeds/showerthoughts.xml`
-- `https://yourhost.example/feeds/evalsignal.xml`
-
-(`.xml` files live under `feeds/` in the repo, or the rsync target dir.)
+- `https://<user>.github.io/feed-pipe/showerthoughts.xml` (GitHub Pages, out/ is served at the repo root)
+- `https://yourhost.example/feeds/evalsignal.xml` (rsync target)
 
 For the server-side env (gateway URL, key placeholder, proxy), see
 `deploy/server.env.example`.
