@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>EvalSignal archive</title>
+    <link>https://evalsignal.xyz</link>
+    <description>Independent model evaluations</description>
+
+    <item>
+      <title>MiMo-V2.6-Pro: a frontier-level agent planner for about $0.12 per 100 calls?</title>
+      <link>https://evalsignal.xyz/evals/mimo-pro</link>
+      <description></description>
+      <content:encoded>&lt;p&gt;Its first-action results look unusually strong for the measured cost. One latency number keeps the verdict from being a simple yes. In our 100-case planner run, it produced 95 valid native tool calls, matched the benchmark's ideal tool on 44 cases, and cost $0.1246 for the full replay.&lt;/p&gt;</content:encoded>
+      <itunes:subtitle>escaped html body to protect</itunes:subtitle>
+      <pubDate>Sun, 18 Oct 2026 10:00:00 GMT</pubDate>
+    </item>
+
+    <item>
+      <title>FORCE_ERROR this item must stay fully original</title>
+      <link>https://evalsignal.xyz/evals/forced-error</link>
+      <description>Original description of the failing item.</description>
+      <content:encoded>&lt;p&gt;FORCE_ERROR Body of the failing item, must survive untouched.&lt;/p&gt;</content:encoded>
+      <media:thumbnail url="https://example.com/thumb.jpg"/>
+      <pubDate>Sat, 17 Oct 2026 10:00:00 GMT</pubDate>
+    </item>
+
+    <item>
+      <title>Qwen3.5 flash: latency king with a memory caveat</title>
+      <link>https://evalsignal.xyz/evals/qwen35-flash</link>
+      <description>Old description to be replaced.</description>
+      <content:encoded>&lt;p&gt;Sub-200ms first tokens across our region tests, but context adherence degrades past 32k. We measured recall drop-off on long transcripts and the inflection point is sharp.&lt;/p&gt;</content:encoded>
+      <enclosure url="https://example.com/audio.mp3" length="999" type="audio/mpeg"/>
+      <pubDate>Fri, 16 Oct 2026 10:00:00 GMT</pubDate>
+    </item>
+
+    <item>
+      <title>Qwen3.5 flash repost: same findings, second sighting</title>
+      <link>https://evalsignal.xyz/evals/qwen35-flash-repost</link>
+      <description>Different original description.</description>
+      <content:encoded>&lt;p&gt;Sub-200ms first tokens across our region tests, but context adherence degrades past 32k. We measured recall drop-off on long transcripts and the inflection point is sharp.&lt;/p&gt;</content:encoded>
+      <pubDate>Thu, 15 Oct 2026 10:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

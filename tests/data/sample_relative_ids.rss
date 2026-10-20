@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>/r/test/top.rss</id>
+  <title>Test feed with relative ids</title>
+  <link href="https://www.reddit.com/r/test/top" rel="alternate"/>
+
+  <entry>
+    <id>t3_a1</id>
+    <title>First test entry</title>
+    <link href="https://www.reddit.com/r/test/comments/a1/" rel="alternate"/>
+  </entry>
+
+  <entry>
+    <id>t3_a2</id>
+    <title>Second test entry, no alternate link</title>
+  </entry>
+</feed>

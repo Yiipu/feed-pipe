@@ -1,0 +1,18 @@
+[project]
+name = "feed-pipe"
+version = "0.1.0"
+description = "Unix-pipe-composable RSS middleware: stdin RSS XML -> stdout RSS XML"
+requires-python = ">=3.12"
+dependencies = ["lxml>=5"]
+
+[project.scripts]
+translate-title = "feedpipe.translate_title:main"
+summarize-description = "feedpipe.summarize_description:main"
+normalize-atom-ids = "feedpipe.normalize_atom_ids:main"
+
+[build-system]
+requires = ["uv_build>=0.11.6,<0.12.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "feedpipe"

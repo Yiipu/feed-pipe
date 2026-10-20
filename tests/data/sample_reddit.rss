@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/">
+  <id>https://api.reddit.com/r/Showerthoughts/top</id>
+  <title type="text">Showerthoughts top posts</title>
+  <updated>2026-10-19T08:00:00Z</updated>
+  <link href="https://www.reddit.com/r/Showerthoughts/top" rel="alternate"/>
+
+  <entry>
+    <id>t3_1abcde</id>
+    <title>Shower thoughts are just ideas that had nowhere better to go</title>
+    <updated>2026-10-19T07:30:00Z</updated>
+    <link href="https://www.reddit.com/r/Showerthoughts/comments/1abcde/" rel="alternate"/>
+    <author><name>u/opal</name></author>
+    <content type="html">&amp;lt;div class="md"&amp;gt;&amp;lt;p&amp;gt;Shower thoughts are just ideas that had nowhere better to go.&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;</content>
+    <itunes:subtitle>escaped html body to protect</itunes:subtitle>
+    <media:thumbnail url="https://example.com/thumb1.jpg"/>
+  </entry>
+
+  <entry>
+    <id>t3_2fghij</id>
+    <title>FORCE_ERROR this title must stay original</title>
+    <updated>2026-10-19T07:00:00Z</updated>
+    <link href="https://www.reddit.com/r/Showerthoughts/comments/2fghij/" rel="alternate"/>
+    <author><name>u/tester</name></author>
+    <content type="html">&amp;lt;div class="md"&amp;gt;&amp;lt;p&amp;gt;Body of the failing item, must survive untouched.&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;</content>
+    <itunes:subtitle>escaped html body to protect</itunes:subtitle>
+  </entry>
+
+  <entry>
+    <id>t3_3klmno</id>
+    <title>The snooze button is a time machine that only goes backwards</title>
+    <updated>2026-10-19T06:30:00Z</updated>
+    <enclosure xmlns="" url="https://example.com/audio3.mp3" length="123456" type="audio/mpeg"/>
+    <author><name>u/sleeper</name></author>
+    <content type="html">&amp;lt;div class="md"&amp;gt;&amp;lt;p&amp;gt;The snooze button is a time machine that only goes backwards.&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;</content>
+    <itunes:subtitle>escaped html body to protect</itunes:subtitle>
+    <enclosure url="https://example.com/audio3.mp3" length="123456" type="audio/mpeg"/>
+  </entry>
+
+  <entry>
+    <id>t3_4dup</id>
+    <title>Shower thoughts are just ideas that had nowhere better to go</title>
+    <updated>2026-10-19T06:00:00Z</updated>
+    <link href="https://www.reddit.com/r/Showerthoughts/comments/4dup/" rel="alternate"/>
+    <author><name>u/reposter</name></author>
+    <content type="html">&amp;lt;div class="md"&amp;gt;&amp;lt;p&amp;gt;Repost body, distinct from the original item.&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;</content>
+    <itunes:subtitle>escaped html body to protect</itunes:subtitle>
+  </entry>
+</feed>

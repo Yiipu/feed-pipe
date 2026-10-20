@@ -1,0 +1,8 @@
+.envrc
+out/
+build.log
+__pycache__/
+*.pyc
+.venv/
+rssmw.env
+.DS_Store

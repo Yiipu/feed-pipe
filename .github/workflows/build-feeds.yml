@@ -1,0 +1,71 @@
+# build-feeds.yml — build feeds on GitHub and deploy out/ to GitHub Pages.
+# Feed URLs: https://<user>.github.io/feed-pipe/<name>.xml
+#
+# Without the OPENAI_BASE_URL/OPENAI_API_KEY repo secrets the build runs in
+# offline mock mode (shared-lib mock, no network); set both secrets to a
+# publicly reachable OpenAI-compatible gateway for real translation.
+#
+# Schedule: every 2 hours (~1 min/run ≈ 370 min/month) — stays well inside
+# the 2000 min/month free-tier budget; a 30-min cron would exceed it.
+name: build feeds
+
+on:
+  schedule:
+    - cron: "23 */2 * * *"
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+
+      # Translation/summary cache; unchanged items cost nothing across runs.
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/rssmw
+          key: rssmw-${{ hashFiles('feeds.conf') }}
+
+      - name: Build feeds
+        run: |
+          uv sync --frozen
+          scripts/build_feeds.sh
+
+      - name: Validate XML output
+        run: |
+          uv run python - <<'EOF'
+          from pathlib import Path
+          from lxml import etree
+          files = sorted(Path("out").glob("*.xml"))
+          assert files, "no feeds built"
+          for f in files:
+              etree.parse(str(f))
+          print("valid:", ", ".join(f.name for f in files))
+          EOF
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
