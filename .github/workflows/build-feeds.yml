@@ -43,6 +43,11 @@ jobs:
         run: |
           uv sync --frozen
           scripts/build_feeds.sh
+        # Repo secrets are not auto-injected; both must be declared here or the
+        # build silently falls back to offline mock mode.
+        env:
+          OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
       - name: Validate XML output
         run: |
