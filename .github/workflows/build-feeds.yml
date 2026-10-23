@@ -34,12 +34,16 @@ jobs:
       - uses: astral-sh/setup-uv@v5
 
       # Translation/summary cache; unchanged items cost nothing across runs.
+      # Unique save key (run_id) + restore-keys prefix: an exact primary-key
+      # hit makes actions/cache skip saving, so hashing feeds.conf here would
+      # pin a stale cache forever and re-call the LLM for every new item.
       - uses: actions/cache@v4
         with:
           path: ~/.cache/rssmw
           # v2: mock run (pre-secrets) polluted the cache with [MOCK] titles;
           # bump the suffix to discard cache generations written by mock builds.
-          key: rssmw-v2-${{ hashFiles('feeds.conf') }}
+          key: rssmw-v2-${{ github.run_id }}
+          restore-keys: rssmw-v2-
 
       - name: Build feeds
         run: |
